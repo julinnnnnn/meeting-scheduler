@@ -1,0 +1,423 @@
+/* --- 全局美化: 新增/修改 --- */
+:root {
+    --primary-color: #0062ff;
+    --primary-hover: #004ecc;
+    --background-color: #f7f9fc;
+    --card-background: #ffffff;
+    --text-color: #2c3e50;
+    --light-text-color: #8492a6;
+    --border-color: #e0e6ed;
+    --grid-line-color: #f1f3f5;
+    --modal-overlay: rgba(30, 30, 50, 0.6);
+    --shadow-color: rgba(108, 114, 127, 0.15);
+}
+
+body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+    width: 100%;
+    max-width: 1400px; 
+}
+
+.view {
+    text-align: center;
+}
+
+header {
+    margin-bottom: 40px;
+}
+
+header h1 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+}
+
+header h1 span {
+    color: var(--primary-color);
+}
+
+header p {
+    font-size: 1.1rem;
+    color: var(--light-text-color);
+}
+
+.card {
+    background: var(--card-background);
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px var(--shadow-color);
+    max-width: 400px;
+    margin: 0 auto;
+    border: 1px solid var(--border-color);
+}
+
+.divider {
+    margin: 25px 0;
+    color: var(--light-text-color);
+    font-size: 0.9rem;
+    position: relative;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    text-align: center;
+    transition: all 0.2s ease-in-out;
+}
+input[type="text"]:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(0, 98, 255, 0.1);
+}
+
+.btn {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    background-color: #fff;
+    color: #333;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+.btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+    border-color: var(--primary-hover);
+}
+/* 新增處: 次要按鈕樣式 */
+.btn-secondary {
+    background-color: transparent;
+    color: var(--light-text-color);
+    border: 1px solid var(--border-color);
+    font-size: 0.9rem;
+    padding: 10px;
+}
+.btn-secondary:hover {
+    background-color: #f7f9fc;
+    color: var(--text-color);
+    border-color: var(--border-color);
+}
+
+/* App View Styles */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    margin-bottom: 20px;
+}
+/* 新增處 Start */
+.header-left {
+    display: flex;
+    flex-direction: column;
+}
+.app-header h1 { 
+    font-size: 1.6rem; 
+    margin: 0; 
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+/* 新增處 End */
+
+.app-header p { font-size: 1rem; margin-top: 5px; color: var(--light-text-color); }
+
+/* --- 修改處 Start --- */
+#show-intersection-btn {
+    width: auto; /* 覆寫 .btn 的 100% 寬度 */
+    flex-shrink: 0; /* 防止按鈕在空間不足時被壓縮 */
+    padding-left: 25px;
+    padding-right: 25px;
+}
+/* --- 修改處 End --- */
+
+/* 新增處 Start: 複製按鈕的專屬樣式 */
+#copy-link-btn {
+    background: none;
+    border: none;
+    padding: 5px;
+    margin: 0;
+    cursor: pointer;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--light-text-color);
+    transition: all 0.2s ease;
+}
+#copy-link-btn:hover {
+    background-color: #eef2f7;
+    color: var(--primary-color);
+}
+#copy-link-btn svg {
+    transition: transform 0.2s ease;
+}
+#copy-link-btn.copied svg {
+    transform: scale(1.2);
+}
+/* 新增處 End */
+
+.app-main {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+#user-list-container {
+    flex: 0 0 200px;
+    background: var(--card-background);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    align-self: flex-start;
+}
+#user-list-container h3 { margin-top: 0; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
+#user-list { list-style: none; padding: 0; margin: 0; }
+#user-list li {
+    display: flex;
+    align-items: center;
+    padding: 10px 5px;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+}
+#user-list li:hover { background-color: #f7f9fc; }
+.color-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 12px;
+    flex-shrink: 0;
+}
+
+/* 新增處: 清除按鈕的上邊距 */
+#clear-my-selections-btn {
+    margin-top: 20px;
+}
+
+#timetable-container {
+    flex: 1;
+    background: var(--card-background);
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    overflow: hidden; /* 為了讓內部滾動正常 */
+}
+
+#timetable-header-days {
+    display: grid;
+    grid-template-columns: 60px repeat(7, 1fr);
+    font-weight: 500;
+    padding-bottom: 10px;
+    text-align: center;
+    color: var(--light-text-color);
+    min-width: 800px; /* 確保內容寬度，以便滾動 */
+}
+
+.day-header {
+    padding: 5px;
+}
+
+#timetable-grid {
+    max-height: 70vh;
+    overflow-y: auto;
+    overflow-x: hidden; /* 預設隱藏水平滾動 */
+    position: relative;
+    border-top: 1px solid var(--border-color);
+}
+
+.time-row {
+    display: grid;
+    grid-template-columns: 60px repeat(7, 1fr);
+    border-bottom: 1px solid var(--grid-line-color);
+    min-width: 800px; /* 確保內容寬度，以便滾動 */
+}
+
+.time-label {
+    font-size: 0.75rem;
+    color: var(--light-text-color);
+    text-align: right;
+    padding-right: 10px;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.time-slot {
+    min-height: 45px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.1s ease;
+    box-sizing: border-box;
+    border-left: 1px solid var(--grid-line-color);
+}
+.time-slot:hover {
+    background-color: rgba(0, 98, 255, 0.05);
+}
+
+.time-slot.is-selected-by-user {
+    background-color: rgba(0, 98, 255, 0.1);
+}
+
+.selection-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    opacity: 0.35;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.participant-tags-container {
+    position: relative;
+    z-index: 1;
+    padding: 4px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    align-items: center;
+}
+
+.participant-tag {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    white-space: nowrap;
+    line-height: 1.5;
+}
+
+.modal {
+    position: fixed;
+    z-index: 1000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: var(--modal-overlay);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.modal-content {
+    background-color: var(--card-background);
+    padding: 30px 40px;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    width: 100%;
+    max-width: 600px;
+    position: relative;
+    animation: slide-in 0.3s ease-out;
+     /* 新增處: 讓 modal-content 內部佈局更靈活 */
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- 修改處 Start: 新增此規則 --- */
+#intersection-results {
+    max-height: 60vh; /* 設定最大高度為螢幕的60% */
+    overflow-y: auto;   /* 當內容超過最大高度時，顯示垂直捲軸 */
+    padding-right: 15px; /* 增加一點內距，避免捲軸跟內容文字重疊 */
+    margin-right: -15px; /* 抵銷掉內距，讓視覺上對齊 */
+}
+/* --- 修改處 End --- */
+
+@keyframes slide-in {
+    from { transform: translateY(-20px) scale(0.98); opacity: 0; }
+    to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px; right: 20px;
+    color: #aaa;
+    font-size: 32px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+.close-btn:hover { color: var(--text-color); }
+
+.modal-content h2 {
+    margin-top: 0;
+    color: var(--primary-color);
+}
+.result-section h3 {
+    font-size: 1.1rem;
+    font-weight: 500;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+    margin-bottom: 12px;
+}
+.result-section p {
+    font-size: 1rem;
+    line-height: 1.7;
+    word-wrap: break-word;
+    background-color: var(--background-color);
+    padding: 12px;
+    border-radius: 8px;
+}
+
+/* --- 新增處: 行動裝置 Media Query --- */
+@media (max-width: 768px) {
+    body { padding: 10px; }
+    .app-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    .app-main {
+        flex-direction: column;
+    }
+    #user-list-container {
+        width: 100%;
+        box-sizing: border-box;
+    }
+    #timetable-container {
+        padding: 15px;
+    }
+    #timetable-grid {
+        overflow-x: auto; /* 核心: 讓課表可以水平滾動 */
+    }
+}

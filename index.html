@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Intersection - 共同時間交集</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Home & Login Screens (無變動) -->
+        <div id="home-container" class="view">
+            <header><h1>Time Intersection</h1><p>找出大家都有空的最佳時間</p></header>
+            <div class="card"><button id="create-room-btn" class="btn btn-primary">建立新房間</button><div class="divider">或</div><input type="text" id="room-id-input" placeholder="輸入房間號碼..." maxlength="6"><button id="join-room-btn" class="btn">加入房間</button></div>
+            <footer><p>房間資料將保留 24 小時</p></footer>
+        </div>
+        <div id="login-container" class="view" style="display:none;">
+            <header><h2 id="login-room-id"></h2></header>
+            <div class="card"><input type="text" id="name-input" placeholder="請輸入您的名稱..."><button id="enter-room-btn" class="btn btn-primary">進入房間</button></div>
+        </div>
+
+        <!-- Main App Screen -->
+        <div id="app-container" class="view" style="display:none;">
+            <header class="app-header">
+                <!-- 修改處 Start: 還原 .header-left 容器以確保樣式和結構正確 -->
+                <div class="header-left">
+                    <h1>房間號: <span id="app-room-id"></span>
+                        <button id="copy-link-btn" title="複製房間連結">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                        </button>
+                    </h1>
+                    <p>嗨, <span id="user-name-display"></span>! 請點選您可用的時間。</p>
+                </div>
+                <!-- 修改處 End -->
+                <button id="show-intersection-btn" class="btn btn-primary">查看交集</button>
+            </header>
+            <main class="app-main">
+                <div id="user-list-container">
+                    <h3>參與成員</h3><ul id="user-list"></ul>
+                    <button id="clear-my-selections-btn" class="btn btn-secondary">清除我的選擇</button>
+                </div>
+                <div id="timetable-container">
+                    <div id="timetable-header-days"></div><div id="timetable-grid"></div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Modal for showing intersection results -->
+    <div id="modal-container" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>時間交集結果</h2>
+            <div id="intersection-results">
+                <div id="all-available-section" class="result-section">
+                    <h3>✅ 所有人都有空 (全交集)</h3>
+                    <p id="all-available-result" style="white-space: pre-wrap;"></p>
+                </div>
+                <!-- 修改處: 補上缺少的 id="max-available-section" -->
+                <div id="max-available-section" class="result-section">
+                    <h3>🌟 最佳推薦時段 (最大覆蓋)</h3>
+                    <p id="max-available-result" style="white-space: pre-wrap;"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
